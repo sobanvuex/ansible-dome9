@@ -1,0 +1,6 @@
+---
+
+- name: Restart dome9
+  service:
+    name: dome9d
+    state: restarted

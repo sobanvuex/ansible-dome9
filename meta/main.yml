@@ -1,0 +1,21 @@
+---
+
+galaxy_info:
+  author: Alex Soban
+  description: Cloud Infrastructure Security
+  issue_tracker_url: https://github.com/SobanVuex/ansible-dome9/issues
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - cloud
+  - monitoring
+  - networking
+  - system
+dependencies: []

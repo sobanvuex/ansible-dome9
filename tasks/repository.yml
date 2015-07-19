@@ -1,0 +1,15 @@
+---
+
+- name: Install repository key
+  apt_key:
+    url: http://repository.dome9.com/ubuntu/dome9-key.asc
+
+- name: Install repository
+  apt_repository:
+    repo: deb http://repository.dome9.com/ubuntu lucid main
+  register: dome9_apt_repository
+
+- name: Update repository cache
+  apt:
+    update_cache: yes
+  when: dome9_apt_repository.changed

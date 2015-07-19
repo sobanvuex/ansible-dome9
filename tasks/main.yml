@@ -1,0 +1,23 @@
+---
+
+- include: repository.yml
+
+- name: Check if `dome9_pair_key` is defined
+  assert:
+    that: dome9_pair_key is defined
+
+- name: Install agent
+  apt:
+    name: dome9agent
+    state: "{{ dome9_upgrade | ternary('latest', 'present') }}"
+  notify: Restart dome9
+
+- name: Pair agent
+  shell: >
+    dome9d pair -k {{ dome9_pair_key }} \
+    -s {{ dome9_server_name | default(ansible_hostname) | quote }} \
+    -g {{ dome9_security_groups | join(',') | quote }} \
+    && touch ~/.dome9paired
+  args:
+    creates: ~/.dome9paired
+  notify: Restart dome9
